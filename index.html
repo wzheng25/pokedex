@@ -1,54 +1,98 @@
 <!DOCTYPE html>
-
-
-<html>
-
-<style>
-
-    body {
-        background-color: bisque;
-    }
-    
-    #logo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 15%;
-    }
-
-    #map {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%;
-    }
-
-</style>
-
+<html lang="en">
 <head>
-    <title>Pokedex</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pokedex</title>
+  <link rel="icon" type="image/jpeg" href="Images/Logo.jpg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
-
 <body>
-    <div id="nav-placeholder">
+  <nav class="navbar navbar-expand-md navbar-dark sticky-top pokedex-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <img src="Images/Logo.jpg" alt="" class="brand-logo">
+        <span class="fw-bold">Pokedex</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+        <form class="d-flex" role="search" id="searchForm">
+          <input class="form-control me-2" type="search" placeholder="Search Pokemon" id="searchInput" aria-label="Search">
+          <button class="btn btn-light" type="submit" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
     </div>
+  </nav>
 
+  <header class="hero" id="home">
+    <div class="container text-center">
+      <img src="Images/Logo.jpg" alt="Pokedex" class="hero-logo mb-3">
+      <h1 class="display-5 fw-bold mb-2">Pokedex</h1>
+      <p class="lead text-muted mb-0">Browse all 151 original Pokemon with live data from PokeAPI.</p>
+    </div>
+  </header>
 
-    <img id="logo" src="Images/Logo.jpg">
-    
-    <br>
+  <main class="container py-4">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3" id="filterBar">
+      <button class="btn btn-sm filter-btn btn-dark active" data-type="all">All</button>
+    </div>
+    <div id="status" class="text-center py-5">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 mb-0 text-muted">Loading Pokemon...</p>
+    </div>
+    <div id="pokemonGrid" class="row g-3"></div>
+    <p class="text-center text-muted mt-4" id="emptyState" hidden>No Pokemon match that search.</p>
+  </main>
 
-    <img id="map" src="Images/Map.png">
+  <footer class="border-top py-5 mt-5 bg-white" id="about">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-md-7">
+          <h2 class="h4 fw-bold mb-3">About this Pokedex</h2>
+          <p class="text-muted mb-2">A clean, data-driven Pokedex built with Bootstrap 5 and the open PokeAPI. Click any Pokemon to see its types, abilities, and base stats.</p>
+          <p class="text-muted small mb-0">Data: <a href="https://pokeapi.co" target="_blank" rel="noopener">pokeapi.co</a> &middot; Artwork: PokeAPI sprites &middot; Built with Bootstrap 5</p>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="Images/Map.png" alt="Pokedex world map" class="map-image">
+        </div>
+      </div>
+    </div>
+  </footer>
 
+  <div class="modal fade" id="pokemonModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0" id="modalHeader">
+          <div>
+            <h2 class="modal-title h4 fw-bold mb-0 text-capitalize" id="modalName">Pokemon</h2>
+            <small id="modalId" class="text-muted">#001</small>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="text-center py-4">
+            <div class="spinner-border text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
 </body>
-
-<footer>
-
-</footer>
-
-
 </html>
-
